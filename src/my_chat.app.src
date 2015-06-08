@@ -1,0 +1,14 @@
+{application, my_chat,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {modules, []},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  cowboy
+                 ]},
+  {mod, { my_chat_app, []}},
+  {env, []}
+ ]}.
