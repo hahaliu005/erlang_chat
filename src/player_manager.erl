@@ -16,7 +16,6 @@ create(Name) ->
     [] ->
       {ok, Pid} = supervisor:start_child(?MODULE, [Name]),
       PlayerInfo = #player_info{
-                      id=id_pool:gen_id(),
                       pid=Pid,
                       name=Name
                      },

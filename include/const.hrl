@@ -3,6 +3,7 @@
 
 -define(ETS_ID_POOL, id_pool).
 -define(ETS_PLAYER, player).
+-define(ETS_ROOM, room).
 -define(ETS_CONN, connection).
 -define(ETS_WEBSOCKET, websocket).
 
@@ -10,7 +11,8 @@
                      ?ETS_ID_POOL,
                      ?ETS_PLAYER,
                      ?ETS_CONN,
-                     ?ETS_WEBSOCKET
+                     ?ETS_WEBSOCKET,
+                     ?ETS_ROOM
                     ]).
 
 -define(SIMPLE_ONE_FOR_ONE, {simple_one_for_one, 5, 10}).
@@ -20,11 +22,15 @@
 -define(CHILD(I, Type, Params), {I, {I, start_link, Params}, permanent, 5000, Type, [I]}).
 -define(SUP_CHILD(Type), [{undefined, {Type, start_link, []}, temporary, 2000, worker, []}]).
 
+-record(player_info,{
+          name,
+          room_name,
+          pid
+         }).
 
--record(player_info, {
-          id, %% integer
-          pid, %% processor
-          name
+-record(room_info,{
+          name,
+          creator_name
          }).
 
 %% the listen port
